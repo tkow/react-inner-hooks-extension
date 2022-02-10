@@ -4,7 +4,6 @@
   "files": ["dist", "types"],
   "types": "./types/main.d.ts",
   "main": "./dist/react-inner-hooks-extension.umd.js",
-  "browser": "./dist/react-inner-hooks-extension.umd.js",
   "module": "./dist/react-inner-hooks-extension.es.js",
   "exports": {
     ".": {
