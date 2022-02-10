@@ -1,9 +1,9 @@
-import { InputHTMLAttributes, memo, useEffect } from "react";
+import { InputHTMLAttributes, memo, useEffect } from 'react'
 
 export interface Props {
-  type: string;
-  onChange?: InputHTMLAttributes<HTMLInputElement>["onChange"];
-  value: string | number;
+  type: string
+  onChange?: InputHTMLAttributes<HTMLInputElement>['onChange']
+  value: string | number
 }
 
 function Input({ type, onChange, value }: Props) {
@@ -15,7 +15,7 @@ function Input({ type, onChange, value }: Props) {
     <div>
       <input type={type} onChange={onChange} value={value} />
     </div>
-  );
+  )
 }
 
 export default memo(Input)
