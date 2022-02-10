@@ -1,0 +1,36 @@
+{
+  "name": "react-inner-hooks-extension",
+  "version": "0.0.0",
+  "files": ["dist", "types"],
+  "types": "./types/main.d.ts",
+  "main": "./dist/react-inner-hooks-extension.umd.js",
+  "browser": "./dist/react-inner-hooks-extension.umd.js",
+  "module": "./dist/react-inner-hooks-extension.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/react-inner-hooks-extension.es.js",
+      "require": "./dist/react-inner-hooks-extension.umd.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react":"^17.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.16",
+    "@types/react": "^17.0.33",
+    "@types/react-dom": "^17.0.10",
+    "@vitejs/plugin-react": "^1.0.7",
+    "typescript": "^4.5.4",
+    "vite": "^2.8.0",
+    "react-dom": "^17.0.2"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "typescript": ">=4.2.0"
+  }
+}
