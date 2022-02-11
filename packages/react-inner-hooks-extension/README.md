@@ -155,6 +155,7 @@ const Example = (props) => {
     const [optionValue, setOptionValue] = useState()
     const {initialized, data} = useFetchData()
     const someValue = ''
+    const someChange = () => {}
     if (!initialized) return null
     return (
         <Component>
@@ -221,7 +222,7 @@ const Example = (props) => {
               />
             <Child/>
         </Component>
-    ) {...data} options={useOptions()} />
+    )
 }
 ```
 
