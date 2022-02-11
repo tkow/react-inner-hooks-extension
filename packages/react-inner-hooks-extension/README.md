@@ -113,7 +113,7 @@ function Timer() {
 
 # Motivation
 
-Component often needs conditional renderning but hooks must be written before their first starting line even if they don't depend on the condition for [idempotent calling rule of hooks](https://reactjs.org/docs/hooks-rules.html).
+A component often needs conditional renderning but hooks must be written before their first starting line even if they don't depend on the condition for [idempotent calling rule of hooks](https://reactjs.org/docs/hooks-rules.html).
 
 Good:
 
@@ -228,7 +228,7 @@ const Example = (props) => {
 
 As the farther place it's used from definition, it's more tough to remember the variable name and we are forced to use editor's trick like code jump, bookmark, splited view, etc. Or scroll and switch page many times.
 
-Briefly, innerHooks enables to inject container layer from props using hooks as container component once did. we split one component to presentational component and the container component when we define container in the past. Also in react hooks, it might be better to put container layer using them though it can put them together to one component. However hooks have regulation that they should be defined before rendering, thus you might often be annoyed in the situation as you've seen above. InnerHooks tackeles this problem and realize it can completely encapsulate the business logic to a component in some case.
+Briefly, innerHooks enables to inject container layer from props using hooks as container component once did. we split one component to presentational component and the container component when we define container in the past. Also in react hooks, it might be better to separate hooks and presentational component like container layer as bigger it is though it can put them together to one component. However hooks have regulation that they should be defined before rendering, thus you might often be annoyed in the situation as you've seen above. InnerHooks tackeles this problem and realize it can completely encapsulate the business logic to one component in some cases.
 
 For example, if you use Redux,
 
@@ -247,12 +247,11 @@ For example, if you use Redux,
     />
 ```
 
-you write once, you can use it everywhere just only to move it another place with cut and paste. This is convinent in some case, you obey strictly obey React's hooks rendering rules and declaretive policy.
+you write once this, you can use or move it another place everywhere with cut and paste. This is more convenient in some case than you obey strictly React's hooks rendering rules and declarative policy.
 
 ## Caveat
 
-Inner hooks look opposed to React declarative policy but though also be encapsulated and abstracted by custom hooks. And I think this feature sholud be equipped in React library itself or extend its render function as possible for more effetive about perfomance and avoidance to repeat  to write withInnerHooks hoc any where.
-If you use eslint with several react-hooks rules, this library violates some of them. So you may need to ignore them.
+Inner hooks look opposed to React declarative policy though it can also be encapsulated and abstracted by custom hooks. Futhur more, I think this feature should be equipped in React library itself or extend its render function as possible for more effective about performance and avoidance to repeat to write withInnerHooks hoc everywhere. If you use eslint with several react-hooks rules, this library violates some of them. So you may need to ignore them.
 
 ## Develop Environment
 
