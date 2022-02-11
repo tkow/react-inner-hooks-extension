@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/tkow/react-inner-hooks-extension/compare/v0.1.2...v0.2.0) (2022-02-11)
+
+
+### Features
+
+* read me ([29b74d1](https://github.com/tkow/react-inner-hooks-extension/commit/29b74d197c80291ff5dabf74be2ca1887caad1bf))
+
+
+
+
+
 ## [0.1.2](https://github.com/tkow/react-inner-hooks-extension/compare/v0.1.1...v0.1.2) (2022-02-11)
 
 **Note:** Version bump only for package root
