@@ -113,7 +113,7 @@ function Timer() {
 
 # Motivation
 
-Component often needs conditional renderning but hooks must be written before their even if they don't depend on the condition for [idempotent calling rule of hooks](https://reactjs.org/docs/hooks-rules.html).
+Component often needs conditional renderning but hooks must be written before their first starting line even if they don't depend on the condition for [idempotent calling rule of hooks](https://reactjs.org/docs/hooks-rules.html).
 
 Good:
 
