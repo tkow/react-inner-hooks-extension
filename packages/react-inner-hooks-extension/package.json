@@ -5,17 +5,30 @@
   "types": "./types/main.d.ts",
   "main": "./dist/react-inner-hooks-extension.umd.js",
   "module": "./dist/react-inner-hooks-extension.es.js",
+  "author": "tkow",
+  "description": "Make react hooks executable in prop scope with hoc.",
   "exports": {
     ".": {
       "import": "./dist/react-inner-hooks-extension.es.js",
       "require": "./dist/react-inner-hooks-extension.umd.js"
     }
   },
+  "keywords": [
+    "react",
+    "react-hooks",
+    "react hook",
+    "hooks"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkow/react-inner-hooks-extension.git"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
+  "license": "MIT",
   "dependencies": {
     "react":"^17.0.2"
   },
