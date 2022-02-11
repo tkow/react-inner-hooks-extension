@@ -65,15 +65,15 @@ export default App
 
 ## API
 
-### withInnerHooks(Component: ComponentType<Props>): ComponentType<Props & {innerHooks?: ()=> Parial<Props> }>
+### withInnerHooks(Component: ComponentType<Props>): ComponentType<Props & {innerHooks?: ()=> Partial<Props> }>
 
-This adds innerHooks prop to passed `Component`. The innerhooks calls in intermediate scope generated as HOC.
+This adds innerHooks prop to passed `Component`. The innerHooks calls in intermediate scope generated as HOC.
 The returned object merge the other props from parent and passed to the child as the original `Component` props.
 
 ### useStateFactory(initialState: Partial<State> | (() => Partial<State>) [state, usePartialState, setState]
 
 The `useStateFactory` hook return state, getState as first and third element derived from `useState` and `usePartialState` as second element of a tuple. The state and getState of it, and them of useState are completely same api.
-The `usePartialState` returns [state, modifierThisState] simular to `useState`. The first difference is that it can't set initialValue from an argument. The reason why is that if you specify it many times the other places, you likely miss where initilize the state named so it must be specified by `useStateFactory` when you need some partial values initialized.
+The `usePartialState` returns [state, modifierThisState] similar to `useState`. The first difference is that it can't set initialValue from an argument. The reason why is that if you specify it many times the other places, you likely miss where initialize the state named so it must be specified by `useStateFactory` when you need some partial values initialized.
 The second difference is you needs to specify state name as key of original state used using string value. Follow this example.
 
 ```tsx
@@ -113,7 +113,7 @@ function Timer() {
 
 # Motivation
 
-A component often needs conditional renderning but hooks must be written before their first starting line even if they don't depend on the condition for [idempotent calling rule of hooks](https://reactjs.org/docs/hooks-rules.html).
+A component often needs conditional rendering but hooks must be written before their first starting line even if they don't depend on the condition for [idempotent calling rule of hooks](https://reactjs.org/docs/hooks-rules.html).
 
 Good:
 
@@ -228,7 +228,7 @@ const Example = (props) => {
 
 As the farther place it's used from definition, it's more tough to remember the variable name and we are forced to use editor's trick like code jump, bookmark, splited view, etc. Or scroll and switch page many times.
 
-Briefly, innerHooks enables to inject container layer from props using hooks as container component once did. we split one component to presentational component and the container component when we define container in the past. Also in react hooks, it might be better to separate hooks and presentational component like container layer as bigger it is though it can put them together to one component. However hooks have regulation that they should be defined before rendering, thus you might often be annoyed in the situation as you've seen above. InnerHooks tackeles this problem and realize it can completely encapsulate the business logic to one component in some cases.
+Briefly, innerHooks enables to inject container layer from props using hooks as container component once did. we split one component to presentational component and the container component when we define container in the past. Also in react hooks, it might be better to separate hooks and presentational component like container layer as bigger it is though it can put them together to one component. However hooks have regulation that they should be defined before rendering, thus you might often be annoyed in the situation as you've seen above. InnerHooks tackles this problem and realize it can completely encapsulate the business logic to one component in some cases.
 
 For example, if you use Redux,
 
@@ -251,7 +251,7 @@ you write once this, you can use or move it another place everywhere with cut an
 
 ## Caveat
 
-Inner hooks look opposed to React declarative policy though it can also be encapsulated and abstracted by custom hooks. Futhur more, I think this feature should be equipped in React library itself or extend its render function as possible for more effective about performance and avoidance to repeat to write withInnerHooks hoc everywhere. If you use eslint with several react-hooks rules, this library violates some of them. So you may need to ignore them.
+Inner hooks look opposed to React declarative policy though it can also be encapsulated and abstracted by custom hooks. Furthermore, I think this feature should be equipped in React library itself or extend its render function as possible for more effective about performance and avoidance to repeat to write withInnerHooks hoc everywhere. If you use eslint with several react-hooks rules, this library violates some of them. So you may need to ignore them.
 
 ## Develop Environment
 
