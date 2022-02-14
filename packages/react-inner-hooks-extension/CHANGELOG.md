@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/tkow/react-inner-hooks-extension/compare/v0.3.0...v0.4.0) (2022-02-14)
+
+
+### Features
+
+* new useSharedRef api ([b481665](https://github.com/tkow/react-inner-hooks-extension/commit/b481665bffa2f6a86f5a9b445051632571170a01))
+
+
+
+
+
 # [0.3.0](https://github.com/tkow/react-inner-hooks-extension/compare/v0.2.1...v0.3.0) (2022-02-12)
 
 
