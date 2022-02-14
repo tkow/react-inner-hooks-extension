@@ -1,10 +1,25 @@
-import { useCallback, useEffect, useState } from 'react'
+import { createRef, useCallback, useEffect, useState } from 'react'
 import logo from './logo.svg'
 import './App.css'
 import NumberInput from './components/NumberInput'
 import TextInput from './components/TextInput'
 import Timer from './components/Timer'
-import { useStateFactory } from '../'
+import { useStateFactory, useSharedRef, createSharedRefHooks } from '../'
+
+const [useScopedSharedRef] = createSharedRefHooks({
+  focus: createRef<HTMLInputElement>()
+})
+
+const useSharedRefExample = () => {
+  const focusRef: HTMLInputElement | undefined = useSharedRef('focus').current
+  useEffect(() => {
+    focusRef?.focus()
+  }, [focusRef])
+  const scopedFocusRef: HTMLInputElement | undefined = useScopedSharedRef('focus').current
+  useEffect(() => {
+    scopedFocusRef && alert(scopedFocusRef.value)
+  }, [scopedFocusRef])
+}
 
 function App() {
   const [state, usePartialState] = useStateFactory({
@@ -19,6 +34,11 @@ function App() {
   // useEffect(() => {
   //   console.log('render App')
   // },[state])
+
+  const focusRef = useSharedRef('focus')
+  const scopedFocusRef = useScopedSharedRef('focus')
+
+  useSharedRefExample()
 
   return (
     <div className="App">
@@ -70,6 +90,8 @@ function App() {
           }}
           value={'Current State Update'}
         />
+        <input ref={focusRef} type="number" />
+        <input ref={scopedFocusRef} type="number" defaultValue={2} />
         <p>current: {JSON.stringify(stateLog)}</p>
       </header>
     </div>

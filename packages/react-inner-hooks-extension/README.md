@@ -111,6 +111,70 @@ function Timer() {
 }
 ```
 
+### useSharedRef(sharedKey: string,SharedRefContext: React.Context<Record<string, React.MutableRefObject<any>>>): React.MutableRefObject<any>
+
+The `useSharedRef` names created ref by first argument and if it has been already created, simply retun it. The created refs are kept in global context.
+So if you want to use refId in only local scope. You can use useScopedSharedRef.
+
+```tsx
+import { useSharedRef, createSharedRefHooks } from '../'
+
+const [useScopedSharedRef] = createSharedRefHooks({
+  'focus': createRef<HTMLInputElement>()
+})
+
+const useSharedRefExample = () => {
+  const ele: HTMLInputElement | undefined = useSharedRef('focus').current
+  useEffect(() => {
+    ele?.focus()
+  }, [focusRef])
+  const scopedEle: HTMLInputElement | undefined = useScopedSharedRef('focus').current
+  useEffect(() => {
+    scopedEle && alert(scopedEle.value)
+  }, [scopedEle])
+}
+
+() => {
+  const focusRef = useSharedRef('fucus')
+  const scopedFocusRef: HTMLInputElement | undefined = useScopedSharedRef('focus')
+  return (
+    <div>
+      <input ref={focusRef} type='number' />
+      <input ref={scopedFocusRef} type='number' defaultValue={2} />
+    </div>
+  )
+}
+```
+
+In addition, you can also use with your original RefContext. If you use typescript, you can use createSharedRefContext is only difference from createContext with typed.
+
+```tsx
+import { useSharedRef, createSharedRefHooks, createSharedRefContext } from '../'
+
+// How to create RefContext
+
+// 1. createSharedRefHooks's second element.
+const [useScopedSharedRef, FromCreateSharedRefHooksContext] = createSharedRefHooks({
+  'focus': createRef<HTMLInputElement>()
+})
+
+// 2. createSharedRefContext
+const FromCreateSharedRefContext = createSharedRefContext({
+  'focus': createRef<HTMLInputElement>()
+})
+
+// 3. React.createContext
+const NomalContext = React.createContext({})
+
+// You can use arbitrary context has SharedRefContext subtype.
+const focusRef = useSharedRef('focus', FromCreateSharedRefContext)
+
+// This line code and useScopedSharedRef('focus') same.
+const focusRef = useSharedRef('focus', FromCreateSharedRefHooksContext)
+
+
+```
+
 # Motivation
 
 A component often needs conditional rendering but hooks must be written before their first starting line even if they don't depend on the condition for [idempotent calling rule of hooks](https://reactjs.org/docs/hooks-rules.html).
