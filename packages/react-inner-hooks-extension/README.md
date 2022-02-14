@@ -112,6 +112,7 @@ function Timer() {
 ```
 
 ### useSharedRef(sharedKey: string,SharedRefContext: React.Context<Record<string, React.MutableRefObject<any>>>): React.MutableRefObject<any>
+### createSharedRefHooks(initialRefs: Record<string, React.MutableRefObject<any>>): [useScopedSharedRef, SharedRefContext]
 
 The `useSharedRef` names created ref by first argument and if it has been already created, simply retun it. The created refs are kept in global context.
 So if you want to use refId in only local scope. You can use useScopedSharedRef.
