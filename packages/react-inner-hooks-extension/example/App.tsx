@@ -10,16 +10,26 @@ const [useScopedSharedRef] = createSharedRefHooks({
   focus: createRef<HTMLInputElement>()
 })
 
-const useSharedRefExample = () => {
-  const focusRef: HTMLInputElement | undefined = useSharedRef('focus').current
-  useEffect(() => {
-    focusRef?.focus()
-  }, [focusRef])
-  const scopedFocusRef: HTMLInputElement | undefined = useScopedSharedRef('focus').current
-  useEffect(() => {
-    scopedFocusRef && alert(scopedFocusRef.value)
-  }, [scopedFocusRef])
+
+const ScopableKeys = {
+  focus: Symbol('focus'),
 }
+
+const useSharedRefExample = () => {
+  const focusEle: HTMLInputElement | undefined = useSharedRef('focus').current
+  useEffect(() => {
+    focusEle?.focus()
+  }, [focusEle])
+  const scopedEle: HTMLInputElement | undefined = useScopedSharedRef('focus').current
+  useEffect(() => {
+    scopedEle && console.log(scopedEle.value)
+  }, [scopedEle])
+  const symbolEle: HTMLInputElement | undefined = useSharedRef(ScopableKeys.focus).current
+  useEffect(() => {
+    symbolEle && console.log(symbolEle.value)
+  }, [symbolEle])
+}
+
 
 function App() {
   const [state, usePartialState] = useStateFactory({
@@ -36,6 +46,7 @@ function App() {
   // },[state])
 
   const focusRef = useSharedRef('focus')
+  const symbolFocusRef = useSharedRef(ScopableKeys.focus)
   const scopedFocusRef = useScopedSharedRef('focus')
 
   useSharedRefExample()
@@ -91,7 +102,8 @@ function App() {
           value={'Current State Update'}
         />
         <input ref={focusRef} type="number" />
-        <input ref={scopedFocusRef} type="number" defaultValue={2} />
+        <input ref={scopedFocusRef} type="string" defaultValue={'scoped'} />
+        <input ref={symbolFocusRef} type="string" defaultValue={'symbol'} />
         <p>current: {JSON.stringify(stateLog)}</p>
       </header>
     </div>

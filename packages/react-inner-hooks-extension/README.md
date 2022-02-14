@@ -173,8 +173,19 @@ const focusRef = useSharedRef('focus', FromCreateSharedRefContext)
 // This line code and useScopedSharedRef('focus') same.
 const focusRef = useSharedRef('focus', FromCreateSharedRefHooksContext)
 
-
 ```
+
+You can also use symbol and it's recommended if you want to use defalut global context only.
+
+```tsx
+const ScopableRefKeys = {
+  focus: Symbol('focus'),
+}
+
+// This compensates all SharedRef keys unique, so you can avoid conflict other components.
+const focusRef = useSharedRef(ScopableRefKeys.focus)
+```
+
 
 # Motivation
 

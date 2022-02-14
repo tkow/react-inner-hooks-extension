@@ -1,11 +1,11 @@
 import React, { Context, createContext, useContext } from 'react'
 
-export const GlobalSharedRefContext: React.Context<Record<string, React.MutableRefObject<any>>> = createContext({})
+export const GlobalSharedRefContext: React.Context<Record<string | symbol, React.MutableRefObject<any>>> = createContext({})
 
 export const useSharedRef = <
-  T extends Extract<keyof O, string> | string,
+  T extends Extract<keyof O, string | symbol> | string,
   RefO extends React.MutableRefObject<any>,
-  O extends Record<T, RefO> = Record<string, RefO>
+  O extends Record<T, RefO> = Record<string | symbol, RefO>
 >(
   sharedKey: T,
   SharedRefContext: Context<O> = GlobalSharedRefContext as any as Context<O>
@@ -19,15 +19,15 @@ export const useSharedRef = <
   return refs[sharedKey] as O[T]
 }
 
-export const createSharedRefContext = <T extends Record<string, React.MutableRefObject<any>>>(
+export const createSharedRefContext = <T extends Record<string | symbol, React.MutableRefObject<any>>>(
   args: T
 ): React.Context<T> => {
   return createContext(args)
 }
 
-export const createSharedRefHooks = <T extends Record<string, React.MutableRefObject<any>>>(
+export const createSharedRefHooks = <T extends Record<string | symbol, React.MutableRefObject<any>>>(
   args: T
-): [(key: Extract<keyof T, string>) => T[keyof T], React.Context<T>] => {
+): [(key: Extract<keyof T, string | symbol> ) => T[keyof T], React.Context<T>] => {
   const InnerContext = createSharedRefContext(args)
-  return [(key: Extract<keyof T, string>) => useSharedRef(key, InnerContext), InnerContext]
+  return [(key: Extract<keyof T, string | symbol> ) => useSharedRef(key, InnerContext), InnerContext]
 }
