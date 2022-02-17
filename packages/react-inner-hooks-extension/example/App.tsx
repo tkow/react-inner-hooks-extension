@@ -57,7 +57,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>Inner Hooks + Demo</p>
         <NumberInput
-          innerHooks={() => {
+          connectContainer={() => {
             const [value = 0, setValue] = usePartialState('num')
             return {
               value,
@@ -68,7 +68,7 @@ function App() {
           }}
         />
         <TextInput
-          innerHooks={() => {
+          connectContainer={() => {
             const [value = 0, setValue] = usePartialState('str')
             return {
               value,
@@ -81,7 +81,7 @@ function App() {
           }}
         />
         <Timer
-          innerHooks={() => {
+          connectContainer={() => {
             const [value = 0, setValue] = usePartialState('timer')
             useEffect(() => {
               const i = setInterval(() => {
