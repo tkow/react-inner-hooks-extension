@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/tkow/react-inner-hooks-extension/compare/v0.5.0...v0.6.0) (2022-02-17)
+
+
+### Features
+
+* accept rest props ([6f27010](https://github.com/tkow/react-inner-hooks-extension/commit/6f27010d045aef4cf5adf8ad9124610d3589fab6))
+
+
+
+
+
 # [0.5.0](https://github.com/tkow/react-inner-hooks-extension/compare/v0.4.0...v0.5.0) (2022-02-14)
 
 
