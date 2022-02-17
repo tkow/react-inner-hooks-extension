@@ -1,4 +1,4 @@
-import { createRef, useCallback, useEffect, useState } from 'react'
+import { createRef, ForwardedRef, MutableRefObject, useCallback, useEffect, useState } from 'react'
 import logo from './logo.svg'
 import './App.css'
 import NumberInput from './components/NumberInput'
@@ -51,13 +51,18 @@ function App() {
 
   useSharedRefExample()
 
+  const forwardedRef = useSharedRef<HTMLInputElement>('forwarded')
+  const innerForwardedRef = useSharedRef('innerForwarded')
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>Inner Hooks + Demo</p>
         <NumberInput
-          connectContainer={() => {
+          ref={innerForwardedRef}
+          connectContainer={(_: {}) => {
+            innerForwardedRef?.current
             const [value = 0, setValue] = usePartialState('num')
             return {
               value,
@@ -68,8 +73,11 @@ function App() {
           }}
         />
         <TextInput
-          connectContainer={() => {
-            const [value = 0, setValue] = usePartialState('str')
+          ref={forwardedRef}
+          connectContainer={(_: {}, ref: typeof forwardedRef) => {
+            const forwardedRef = useSharedRef<HTMLInputElement>('forwarded')
+            const z = ref?.current === forwardedRef?.current
+            const [value = '', setValue] = usePartialState('str')
             return {
               value,
               onChange: useCallback((e) => {

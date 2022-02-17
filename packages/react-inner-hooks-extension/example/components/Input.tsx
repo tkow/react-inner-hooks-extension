@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, memo, useEffect } from 'react'
+import { ForwardedRef, forwardRef, InputHTMLAttributes, memo, useEffect } from 'react'
 
 export interface Props {
   type: string
@@ -6,16 +6,18 @@ export interface Props {
   value: string | number
 }
 
-function Input({ type, onChange, value }: Props) {
+function Input({ type, onChange, value }: Props, ref: ForwardedRef<HTMLInputElement>) {
   // NOTE: If you check rendering count
   useEffect(() => {
     console.log(`render ${type}`)
   })
   return (
     <div>
-      <input type={type} onChange={onChange} value={value} />
+      <input ref={ref} type={type} onChange={onChange} value={value} />
     </div>
   )
 }
 
-export default memo(Input)
+export default memo(
+  forwardRef(Input)
+)

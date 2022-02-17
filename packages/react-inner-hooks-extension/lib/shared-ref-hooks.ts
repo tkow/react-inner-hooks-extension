@@ -1,18 +1,18 @@
-import React, { Context, createContext, useContext } from 'react'
+import React, { Context, createContext, NewLifecycle, useContext } from 'react'
 
 export const GlobalSharedRefContext: React.Context<Record<string | symbol, React.MutableRefObject<any>>> = createContext({})
 
 export const useSharedRef = <
-  T extends Extract<keyof O, string | symbol> | string,
-  RefO extends React.MutableRefObject<any>,
-  O extends Record<T, RefO> = Record<string | symbol, RefO>
+  RefO extends any = any,
+  T extends Extract<keyof O, string | symbol> | string | symbol = string | symbol,
+  O extends Record<T, React.MutableRefObject<RefO>> = Record<string | symbol, React.MutableRefObject<RefO>>
 >(
   sharedKey: T,
   SharedRefContext: Context<O> = GlobalSharedRefContext as any as Context<O>
 ): O[T] => {
   const refs = useContext(SharedRefContext)
   if (!refs[sharedKey]) {
-    const ref = React.createRef<O[T] extends React.MutableRefObject<infer R> ? R : any>()
+    const ref = React.createRef<RefO>()
     refs[sharedKey] = ref as O[T]
     return ref as O[T]
   }
