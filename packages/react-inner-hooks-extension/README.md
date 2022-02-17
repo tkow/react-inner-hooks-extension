@@ -65,10 +65,10 @@ export default App
 
 ## API
 
-### withInnerHooks(Component: ComponentType<Props>): ComponentType<Props & {connectContainer?: <RP extends Partial<Props>>(Rest<Props, RP>)=> RP }>
+### withInnerHooks(Component: ComponentType<Props>): ComponentType<Props & {connectContainer?: <RP extends Partial<Props>, Ref>(restProps: Rest<Props, RP>, ref?: MutableRefObject<Ref|null>)=> RP }>
 
 This adds connectContainer prop to passed `Component`. The connectContainer calls in intermediate scope generated as HOC.
-The returned object merge the other props from parent and passed to the child as the original `Component` props.
+The returned object merge the other props from parent and passed to the child as the original `Component` props. The second arguments passed ref if it's set.
 
 ** innerHooks prop is renamed (version > 0.5.0) to connectContainer because it can be used without hooks and make it clearer that it maps props from component and return prop merged. If you use (version <= 0.5.0>) please use `innerHooks`.
 
@@ -83,8 +83,17 @@ const Ex = withInnerHooks(Example)
 
 let ex1 = () => <Ex b={1} connectContainer={() => ({ a: 1 })} />
 let ex2 = () => <Ex b={1} connectContainer={(d: {b: number}) => ({ a: 1 })} />
+
+const fref = useSharedRef<HTMLInputElement>('forwarded')
+let ex3 = () => <Ex ref={fref} b={1} connectContainer={(d: {b: number}, ref: typeof fref) => {
+  useEffect(() => {
+    console.log(ref.current)
+  }, [ref.current])
+  return { a: 1 }
+}} />
+
 const hooksContainer = (d: {b: number}) => ({ a: 1 })
-let ex3 = () => <Ex b={1} connectContainer={hooksContainer} />
+let ex4 = () => <Ex b={1} connectContainer={hooksContainer} />
 ```
 
 **warning**: You can't omit if you use from comopnent props because inference can't determine args props for the priority i higher than return type.
@@ -350,7 +359,7 @@ Inner hooks look opposed to React declarative policy though it can also be encap
 
 This library use intensionally out of the way of [concept of React Hooks](https://overreacted.io/why-do-hooks-rely-on-call-order/), though I believe that our library is useful in limited situations. As I thought, the fact that some proposals are rejected is React doesn't need them, but there are some situations we want to do this and make it means especially for typescript or flow users.
 
-But, you use carefully following link's article above, and I recommend you not to somewaht complicated cases discussion about this is [here](https://dev.to/tkow/inner-hooks-new-idea-of-react-hooks-59kb).
+But, you use carefully following link's article above, and I recommend you not to somewhat complicated cases. The discussion about this is [here](https://dev.to/tkow/inner-hooks-new-idea-of-react-hooks-59kb).
 
 ## Develop Environment
 
