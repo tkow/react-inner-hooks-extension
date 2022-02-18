@@ -2,10 +2,18 @@
   "name": "react-inner-hooks-extension-jsx-runtime",
   "version": "1.0.0",
   "description": "jsx extension for react-inner-hooks-extension",
-  "main": "dist/jsx-runtime/ioindex.js",
+  "main": "dist/cjs/jsx-runtime/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/jsx-runtime/index.js",
+      "require": "./dist/cjs/jsx-runtime/index.js"
+    }
+  },
   "author": "tkow",
   "license": "MIT",
   "scripts": {
-    "build": "../node_modules/typescript/bin/tsc"
+    "build": "run-p build:*",
+    "build:cjs": "../node_modules/typescript/bin/tsc",
+    "build:esm": "../node_modules/typescript/bin/tsc --p tsconfig.esm.json"
   }
 }

@@ -4,7 +4,11 @@ import * as path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react({
+      jsxImportSource: 'react-inner-hooks-extension'
+    })
+  ],
   build: {
     lib: {
       entry: path.resolve(__dirname, 'lib/main.ts'),

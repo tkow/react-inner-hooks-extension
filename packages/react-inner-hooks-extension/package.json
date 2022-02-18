@@ -15,12 +15,6 @@
   "module": "./dist/react-inner-hooks-extension.es.js",
   "author": "tkow",
   "description": "Make react hooks executable in prop scope with hoc.",
-  "exports": {
-    ".": {
-      "import": "./dist/react-inner-hooks-extension.es.js",
-      "require": "./dist/react-inner-hooks-extension.umd.js"
-    }
-  },
   "keywords": [
     "react",
     "react-hooks",
@@ -34,10 +28,10 @@
   "scripts": {
     "dev": "vite",
     "clean": "rimraf ./dist ./jsx-dev-runtime/dist ./jsx-runtime/dist",
-    "build": "run-s clean && run-p build:*",
+    "build": "run-s clean && run-p build:jsx:* && run-s build:lib",
     "build:lib": "tsc && vite build",
-    "build:jsx-dev-runtime": "npm --prefix ./jsx-dev-runtime run build",
-    "build:jsx-runtime": "npm --prefix ./jsx-runtime run build",
+    "build:jsx:dev-runtime": "npm --prefix ./jsx-dev-runtime run build",
+    "build:jsx:runtime": "npm --prefix ./jsx-runtime run build",
     "preview": "vite preview"
   },
   "license": "MIT",
