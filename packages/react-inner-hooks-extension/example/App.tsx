@@ -1,5 +1,5 @@
 import './extension'
-import React, { createRef, FunctionComponent, useCallback, useEffect, useState } from 'react'
+import React, { createRef, FunctionComponent, MutableRefObject, useCallback, useEffect, useState } from 'react'
 import { createSharedRefHooks, useSharedRef, useStateFactory } from '../'
 import './App.css'
 import Input from './components/Input'
@@ -15,9 +15,9 @@ const [useScopedSharedRef] = createSharedRefHooks({
 const ScopableKeys = {
   focus: Symbol('focus')
 }
-const z = React as any
-(z.createElement as any)()
+
 debugger
+
 const useSharedRefExample = () => {
   const focusEle: HTMLInputElement | undefined = useSharedRef('focus').current
   useEffect(() => {
@@ -66,7 +66,8 @@ function App() {
         <p>Inner Hooks + Demo</p>
         <Input
           type={''}
-          connectContainer={() => {
+          // value=''
+          connectContainer={(a: {}, ref?: MutableRefObject<any>) => {
             debugger
             return {
               value: ''
@@ -74,10 +75,9 @@ function App() {
           }}
         />
         <D
-          // a={2}
+          // a={1}
           b={2}
           connectContainer={() => {
-            debugger
             return {
               a: 1
             }
@@ -98,7 +98,7 @@ function App() {
         />
         <TextInput
           ref={forwardedRef}
-          connectContainer={(_: {}, ref: typeof forwardedRef) => {
+          connectContainer={(_: {}, ref?: typeof forwardedRef) => {
             const forwardedRef = useSharedRef<HTMLInputElement>('forwarded')
             const z = ref?.current === forwardedRef?.current
             const [value = '', setValue] = usePartialState('str')
@@ -113,7 +113,7 @@ function App() {
           }}
         />
         <Timer
-          connectContainer={() => {
+          connectContainer={(a: {}) => {
             const [value = 0, setValue] = usePartialState('timer')
             useEffect(() => {
               const i = setInterval(() => {

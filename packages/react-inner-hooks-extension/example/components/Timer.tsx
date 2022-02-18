@@ -1,6 +1,7 @@
+import { FC } from 'react'
 import { withInnerHooks } from '../../'
 
-function Text(props: {value: number}) {
+const Text: FC<{value: number}> = function Text(props: {value: number}) {
   return <div>{props.value}</div>
 }
 
