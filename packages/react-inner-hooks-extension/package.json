@@ -4,7 +4,7 @@
   "files": [
     "dist",
     "types",
-    "react-inner-extension.d.ts",
+    "react-inner-hooks-extension.d.ts",
     "jsx-dev-runtime/package.json",
     "jsx-dev-runtime/dist",
     "jsx-runtime/package.json",
