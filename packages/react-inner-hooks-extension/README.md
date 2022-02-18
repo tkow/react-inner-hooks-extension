@@ -353,6 +353,47 @@ For example, if you use Redux,
 
 you write once this, you can use or move it another place everywhere with cut and paste. This is more convenient in some case than you obey strictly React's hooks rendering rules and declarative policy.
 
+## Global Mode
+
+You can use innerHooks globaly without withInnerHooks hoc. If you want do so, create initial file like named react-inner-hooks-initializer.tsx as an example.
+
+```tsx
+import React from 'react'
+import {enableInnerHooksGlobal} from 'react-inner-hooks-extension'
+
+enableInnerHooksGlobal(React)
+```
+
+and call it at application entrypoint and before first React called.
+
+For example, if your application entrypoint is App.tsx.
+
+```tsx
+import 'react-inner-hooks-initializer'
+import React
+
+export defalut App() {
+  "..."
+}
+```
+
+If you use runtime automatic mode in @babel/preset-react or the similar preset, you can change jsx transform behavior. In the case of @babel/preset-react specify importSource like followed by an example.
+
+```.babelrc
+['@babel/preset-react', {
+  runtime: 'automatic',
+  importSource: 'react-inner-hooks-extension',
+}]
+```
+
+then, enable type extension if you use typescript.
+
+```tsx
+/// <reference types="react-inner-hooks-extension/react-inner-hooks-extension" />
+```
+
+Then you can use FunctionalComponent have connectContainer prop and if set it, automatically generate hoc and call it when react element is created.
+
 ## Caveat
 
 Inner hooks look opposed to React declarative policy though it can also be encapsulated and abstracted by custom hooks. Furthermore, I think this feature should be equipped in React library itself or extend its render function as possible for more effective about performance and avoidance to repeat to write withInnerHooks hoc everywhere. If you use eslint with several react-hooks rules, this library violates some of them. So you may need to ignore them.
