@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/tkow/react-inner-hooks-extension/compare/v1.0.0...v1.1.0) (2022-02-18)
+
+
+### Features
+
+* available babel ([8f65584](https://github.com/tkow/react-inner-hooks-extension/commit/8f65584faca369afbee837a6d05de516fd691a6f))
+* babel ([6d6c9f7](https://github.com/tkow/react-inner-hooks-extension/commit/6d6c9f79515fab6827a48d3721593cfde3dd6fc4))
+* build方法の切り替え ([9f2bb8f](https://github.com/tkow/react-inner-hooks-extension/commit/9f2bb8fe2900a99c1a0a9543e2eb416fd1924350))
+* jsx transform ([976117a](https://github.com/tkow/react-inner-hooks-extension/commit/976117aa87b6829a8437de57b137a85aebb9e6fa))
+* type inference valid ([5a89a3a](https://github.com/tkow/react-inner-hooks-extension/commit/5a89a3a5ffb3a84d96f0266c21e71bc0cf0ea2c3))
+* update example ([164f5c7](https://github.com/tkow/react-inner-hooks-extension/commit/164f5c711f48d344cd7760b76bb40906d6209574))
+
+
+
+
+
 # [1.0.0](https://github.com/tkow/react-inner-hooks-extension/compare/v0.6.0...v1.0.0) (2022-02-17)
 
 
