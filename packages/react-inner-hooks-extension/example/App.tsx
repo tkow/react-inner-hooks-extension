@@ -66,7 +66,6 @@ function App() {
           type={''}
           // value=''
           connectContainer={(a: {}, ref?: MutableRefObject<any>) => {
-            debugger
             return {
               value: ''
             }

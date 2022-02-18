@@ -10,7 +10,7 @@ export default defineConfig({
       // development: process.env.NODE_ENV === 'development',
       // importSource: '@welldone-software/why-did-you-render',
       jsxRuntime: 'automatic',
-      // jsxImportSource: 'react-inner-hooks-extension'
+      jsxImportSource: 'react-inner-hooks-extension'
     })
   ],
   build: {
