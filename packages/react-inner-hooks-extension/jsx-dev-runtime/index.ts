@@ -1,5 +1,5 @@
 import {getPatchedComponent, isNeededInnerHooksContainer} from '../lib/react-extension'
-import * as jsxDevRuntime from 'react/jsx-runtime'
+import * as jsxDevRuntime from 'react/jsx-dev-runtime'
 
 const orgJsxDevRuntime = jsxDevRuntime as any
 
