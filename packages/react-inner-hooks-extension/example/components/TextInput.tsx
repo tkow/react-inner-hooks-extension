@@ -8,6 +8,4 @@ function TextInput(props: Omit<ExtractProps<typeof Input>, 'type'>, ref: Forward
   return <Input type="string" {...props} ref={ref} />
 }
 
-export default withInnerHooks(
-  forwardRef(TextInput)
-)
+export default withInnerHooks(TextInput)

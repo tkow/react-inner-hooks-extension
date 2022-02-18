@@ -8,6 +8,5 @@ function NumberInput(props: Omit<ExtractProps<typeof Input>, 'type'>, ref: Forwa
   return <Input type="number" {...props} ref={ref} />
 }
 
-export default withInnerHooks(
-  forwardRef(NumberInput)
-)
+export default withInnerHooks(NumberInput)
+
