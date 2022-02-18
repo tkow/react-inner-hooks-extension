@@ -3,12 +3,7 @@
   "version": "1.0.0",
   "description": "jsx extension for react-inner-hooks-extension",
   "main": "dist/cjs/jsx-dev-runtime/index.js",
-  "exports": {
-    ".": {
-      "import": "./dist/esm/jsx-dev-runtime/index.js",
-      "require": "./dist/cjs/jsx-dev-runtime/index.js"
-    }
-  },
+  "module": "dist/esm/jsx-dev-runtime/index.js",
   "author": "tkow",
   "license": "MIT",
   "scripts": {

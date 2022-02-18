@@ -16,8 +16,6 @@ const ScopableKeys = {
   focus: Symbol('focus')
 }
 
-debugger
-
 const useSharedRefExample = () => {
   const focusEle: HTMLInputElement | undefined = useSharedRef('focus').current
   useEffect(() => {

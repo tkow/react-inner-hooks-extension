@@ -15,6 +15,20 @@
   "module": "./dist/react-inner-hooks-extension.es.js",
   "author": "tkow",
   "description": "Make react hooks executable in prop scope with hoc.",
+  "exports": {
+    ".": {
+      "import": "./dist/react-inner-hooks-extension.es.js",
+      "require": "./dist/react-inner-hooks-extension.umd.js"
+    },
+    "./jsx-runtime": {
+      "import": "./jsx-runtime/esm/dist/jsx-runtime/index.js",
+      "require": "./jsx-runtime/cjs/dist/jsx-runtime/index.js"
+    },
+    "./jsx-dev-runtime": {
+      "import": "./jsx-dev-runtime/esm/dist/jsx-dev-runtime/index.js",
+      "require": "./jsx-dev-runtime/cjs/dist/jsx-dev-runtime/index.js"
+    }
+  },
   "keywords": [
     "react",
     "react-hooks",
