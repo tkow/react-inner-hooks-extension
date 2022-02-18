@@ -1,0 +1,11 @@
+{
+  "name": "react-inner-hooks-extension-jsx-dev-runtime",
+  "version": "1.0.0",
+  "description": "jsx extension for react-inner-hooks-extension",
+  "main": "dist/jsx-dev-runtime/index.js",
+  "author": "tkow",
+  "license": "MIT",
+  "scripts": {
+    "build": "../node_modules/typescript/bin/tsc"
+  }
+}

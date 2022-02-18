@@ -1,20 +1,23 @@
-import { createRef, ForwardedRef, MutableRefObject, useCallback, useEffect, useState } from 'react'
-import logo from './logo.svg'
+import './extension'
+import React, { createRef, FunctionComponent, useCallback, useEffect, useState } from 'react'
+import { createSharedRefHooks, useSharedRef, useStateFactory } from '../'
 import './App.css'
+import Input from './components/Input'
 import NumberInput from './components/NumberInput'
 import TextInput from './components/TextInput'
 import Timer from './components/Timer'
-import { useStateFactory, useSharedRef, createSharedRefHooks } from '../'
+import logo from './logo.svg'
 
 const [useScopedSharedRef] = createSharedRefHooks({
   focus: createRef<HTMLInputElement>()
 })
 
-
 const ScopableKeys = {
-  focus: Symbol('focus'),
+  focus: Symbol('focus')
 }
-
+const z = React as any
+(z.createElement as any)()
+debugger
 const useSharedRefExample = () => {
   const focusEle: HTMLInputElement | undefined = useSharedRef('focus').current
   useEffect(() => {
@@ -30,6 +33,9 @@ const useSharedRefExample = () => {
   }, [symbolEle])
 }
 
+const D: FunctionComponent<{ a: number; b: number }> = function (props) {
+  return <></>
+}
 
 function App() {
   const [state, usePartialState] = useStateFactory({
@@ -53,12 +59,30 @@ function App() {
 
   const forwardedRef = useSharedRef<HTMLInputElement>('forwarded')
   const innerForwardedRef = useSharedRef('innerForwarded')
-
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>Inner Hooks + Demo</p>
+        <Input
+          type={''}
+          connectContainer={() => {
+            debugger
+            return {
+              value: ''
+            }
+          }}
+        />
+        <D
+          // a={2}
+          b={2}
+          connectContainer={() => {
+            debugger
+            return {
+              a: 1
+            }
+          }}
+        />
         <NumberInput
           ref={innerForwardedRef}
           connectContainer={(_: {}) => {
