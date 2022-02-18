@@ -1,18 +1,19 @@
-import { createRef, ForwardedRef, MutableRefObject, useCallback, useEffect, useState } from 'react'
-import logo from './logo.svg'
+import './extension'
+import React, { createRef, FunctionComponent, MutableRefObject, useCallback, useEffect, useState } from 'react'
+import { createSharedRefHooks, useSharedRef, useStateFactory } from '../'
 import './App.css'
+import Input from './components/Input'
 import NumberInput from './components/NumberInput'
 import TextInput from './components/TextInput'
 import Timer from './components/Timer'
-import { useStateFactory, useSharedRef, createSharedRefHooks } from '../'
+import logo from './logo.svg'
 
 const [useScopedSharedRef] = createSharedRefHooks({
   focus: createRef<HTMLInputElement>()
 })
 
-
 const ScopableKeys = {
-  focus: Symbol('focus'),
+  focus: Symbol('focus')
 }
 
 const useSharedRefExample = () => {
@@ -30,6 +31,9 @@ const useSharedRefExample = () => {
   }, [symbolEle])
 }
 
+const D: FunctionComponent<{ a: number; b: number }> = function (props) {
+  return <></>
+}
 
 function App() {
   const [state, usePartialState] = useStateFactory({
@@ -53,12 +57,29 @@ function App() {
 
   const forwardedRef = useSharedRef<HTMLInputElement>('forwarded')
   const innerForwardedRef = useSharedRef('innerForwarded')
-
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>Inner Hooks + Demo</p>
+        <Input
+          type={''}
+          // value=''
+          connectContainer={(a: {}, ref?: MutableRefObject<any>) => {
+            return {
+              value: ''
+            }
+          }}
+        />
+        <D
+          // a={1}
+          b={2}
+          connectContainer={() => {
+            return {
+              a: 1
+            }
+          }}
+        />
         <NumberInput
           ref={innerForwardedRef}
           connectContainer={(_: {}) => {
@@ -74,7 +95,7 @@ function App() {
         />
         <TextInput
           ref={forwardedRef}
-          connectContainer={(_: {}, ref: typeof forwardedRef) => {
+          connectContainer={(_: {}, ref?: typeof forwardedRef) => {
             const forwardedRef = useSharedRef<HTMLInputElement>('forwarded')
             const z = ref?.current === forwardedRef?.current
             const [value = '', setValue] = usePartialState('str')
@@ -89,7 +110,7 @@ function App() {
           }}
         />
         <Timer
-          connectContainer={() => {
+          connectContainer={(a: {}) => {
             const [value = 0, setValue] = usePartialState('timer')
             useEffect(() => {
               const i = setInterval(() => {

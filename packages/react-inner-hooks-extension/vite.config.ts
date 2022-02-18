@@ -4,7 +4,15 @@ import * as path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react({
+      // runtime: 'automatic',
+      // development: process.env.NODE_ENV === 'development',
+      // importSource: '@welldone-software/why-did-you-render',
+      jsxRuntime: 'automatic',
+      jsxImportSource: 'react-inner-hooks-extension'
+    })
+  ],
   build: {
     lib: {
       entry: path.resolve(__dirname, 'lib/main.ts'),

@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "files": [
     "dist",
-    "types"
+    "types",
+    "react-inner-extension.d.ts",
+    "jsx-dev-runtime/package.json",
+    "jsx-dev-runtime/dist",
+    "jsx-runtime/package.json",
+    "jsx-runtime/dist"
   ],
   "types": "./types/main.d.ts",
   "main": "./dist/react-inner-hooks-extension.umd.js",
@@ -14,6 +19,14 @@
     ".": {
       "import": "./dist/react-inner-hooks-extension.es.js",
       "require": "./dist/react-inner-hooks-extension.umd.js"
+    },
+    "./jsx-runtime": {
+      "import": "./jsx-runtime/dist/esm/jsx-runtime/index.js",
+      "require": "./jsx-runtime/dist/cjs/jsx-runtime/index.js"
+    },
+    "./jsx-dev-runtime": {
+      "import": "./jsx-dev-runtime/dist/esm/jsx-dev-runtime/index.js",
+      "require": "./jsx-dev-runtime/dist/cjs/jsx-dev-runtime/index.js"
     }
   },
   "keywords": [
@@ -28,7 +41,11 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "clean": "rimraf ./dist ./jsx-dev-runtime/dist ./jsx-runtime/dist",
+    "build": "run-s clean && run-p build:jsx:* && run-s build:lib",
+    "build:lib": "tsc && vite build",
+    "build:jsx:dev-runtime": "npm --prefix ./jsx-dev-runtime run build",
+    "build:jsx:runtime": "npm --prefix ./jsx-runtime run build",
     "preview": "vite preview"
   },
   "license": "MIT",
@@ -40,7 +57,9 @@
     "@types/react": "^17.0.33",
     "@types/react-dom": "^17.0.10",
     "@vitejs/plugin-react": "^1.0.7",
+    "npm-run-all": "^4.1.5",
     "react-dom": "^17.0.2",
+    "rimraf": "^3.0.2",
     "typescript": "^4.5.4",
     "vite": "^2.8.0"
   },
