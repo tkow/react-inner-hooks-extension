@@ -71,13 +71,21 @@ function App() {
             }
           }}
         />
+        <Input
+          type={''}
+          value=''
+          connectContainer={(a: {value: string | number}, ref?: MutableRefObject<any>) => {
+            // NOTE: void
+            // return {}
+          }}
+        />
         <D
-          // a={1}
-          b={2}
+          a={1}
+          // b={2}
           connectContainer={() => {
-            return {
-              a: 1
-            }
+              return {
+                b: 2
+              }
           }}
         />
         <NumberInput
@@ -110,7 +118,8 @@ function App() {
           }}
         />
         <Timer
-          connectContainer={(a: {}) => {
+          value={1}
+          connectContainer={(a) => {
             const [value = 0, setValue] = usePartialState('timer')
             useEffect(() => {
               const i = setInterval(() => {
@@ -121,6 +130,20 @@ function App() {
             return {
               value
             }
+          }}
+        />
+        <Timer
+          value={1}
+          connectContainer={(a) => {
+            const [value = 0, setValue] = usePartialState('timer')
+            useEffect(() => {
+              const i = setInterval(() => {
+                setValue((state) => state + 1)
+              }, 1000)
+            }, [])
+            // return {
+            //   value: 1
+            // }
           }}
         />
         <input

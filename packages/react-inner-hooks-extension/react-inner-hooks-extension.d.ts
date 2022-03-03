@@ -1,9 +1,9 @@
 import 'react'
 
 declare module 'react' {
-  export type RestProps<Props, PatialProps> = Omit<Props, keyof PatialProps>
+  export type RestProps<Props, PatialProps> = Omit<Props,  PatialProps extends void ? never : keyof PatialProps>
 
-  export type AddInnerHooksProps<Props, IP extends Partial<Props> | void = {}, RefValue = any> = RestProps<Props, ForceIP<IP>> & {
+  export type AddInnerHooksProps<Props, IP extends Partial<Props> | void = void, RefValue = any> = RestProps<Props, ForceIP<IP>> & {
     connectContainer?: (props: RestProps<Props, ForceIP<IP>>, ref?: MutableRefObject<RefValue>) => ForceIP<IP>
   }
 
@@ -12,19 +12,19 @@ declare module 'react' {
 
 
   export interface VoidFunctionComponent<P = {}> {
-    <IP = {}, RefValue = any>(props: AddInnerHooksProps<P, IP, RefValue>, context?: any): ReactElement<any, any> | null;
+    <IP = void, RefValue = any>(props: AddInnerHooksProps<P, IP, RefValue>, context?: any): ReactElement<any, any> | null;
   }
   export interface FunctionComponent<P = {}> {
-    <IP = {}, RefValue = any>(props: PropsWithChildren<AddInnerHooksProps<P, IP, RefValue>>, context?: any): ReactElement<any, any> | null;
+    <IP = void, RefValue = any>(props: PropsWithChildren<AddInnerHooksProps<P, IP, RefValue>>, context?: any): ReactElement<any, any> | null;
   }
   export interface ComponentClass<P = {}, S = ComponentState> extends StaticLifecycle<P, S> {
-    new <IP = {}, RefValue = any>(props: AddInnerHooksProps<P, IP, RefValue>, context?: any): Component<AddInnerHooksProps<P, IP, RefValue>, S>;
+    new <IP = void, RefValue = any>(props: AddInnerHooksProps<P, IP, RefValue>, context?: any): Component<AddInnerHooksProps<P, IP, RefValue>, S>;
   }
   export interface ExoticComponent<P = {}> {
     /**
      * **NOTE**: Exotic components are not callable.
      */
-    <IP = {}, RefValue = any>(props: AddInnerHooksProps<P, IP, RefValue extends unknown ? any : RefValue>): (ReactElement | null);
+    <IP = void, RefValue = any>(props: AddInnerHooksProps<P, IP, RefValue extends unknown ? any : RefValue>): (ReactElement | null);
   }
 
 }
