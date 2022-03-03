@@ -65,7 +65,7 @@ export default App
 
 ## API
 
-### withInnerHooks(Component: ComponentType<Props>): ComponentType<Props & {connectContainer?: <RP extends Partial<Props>, Ref>(restProps: Rest<Props, RP>, ref?: MutableRefObject<Ref|null>)=> RP }>
+### withInnerHooks(Component: ComponentType<Props>): ComponentType<Props & {connectContainer?: <RP extends Partial<Props> | void, Ref>(restProps: Rest<Props, RP>, ref?: MutableRefObject<Ref|null>)=> RP }>
 
 This adds connectContainer prop to passed `Component`. The connectContainer calls in intermediate scope generated as HOC.
 The returned object merge the other props from parent and passed to the child as the original `Component` props. The second arguments passed ref if it's set.
@@ -97,6 +97,8 @@ let ex4 = () => <Ex b={1} connectContainer={hooksContainer} />
 ```
 
 **warning**: You can't omit if you use from comopnent props because inference can't determine args props for the priority i higher than return type.
+
+**NOTE**: If you only need to call hooks, you can return void instead of an empty object.
 
 ### useStateFactory(initialState: Partial<State> | (() => Partial<State>) [state, usePartialState, setState]
 
