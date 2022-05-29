@@ -1007,6 +1007,10 @@ react-inner-hooks-extension@./react-inner-hooks-extension-1.1.2.tgz:
   version "1.1.2"
   resolved "./react-inner-hooks-extension-1.1.2.tgz#2a83061d1fd5007d3d27e3749e070758009df701"
 
+react-inner-hooks-extension@./react-inner-hooks-extension-1.2.0.tgz:
+  version "1.2.0"
+  resolved "./react-inner-hooks-extension-1.2.0.tgz#fa3f612419275ae6c85095ec48ff635c7321ca88"
+
 react-refresh@^0.11.0:
   version "0.11.0"
   resolved "https://registry.npmjs.org/react-refresh/-/react-refresh-0.11.0.tgz"
