@@ -12,19 +12,19 @@ declare module 'react' {
 
 
   export interface VoidFunctionComponent<P = {}> {
-    <IP = void, RefValue = any>(props: AddInnerHooksProps<P, IP, RefValue>, context?: any): ReactElement<any, any> | null;
+    <IP extends void | Partial<P> = void, RefValue = any>(props: AddInnerHooksProps<P, IP, RefValue>, context?: any): ReactElement<any, any> | null;
   }
   export interface FunctionComponent<P = {}> {
-    <IP = void, RefValue = any>(props: PropsWithChildren<AddInnerHooksProps<P, IP, RefValue>>, context?: any): ReactElement<any, any> | null;
+    <IP extends void | Partial<P> = void, RefValue = any>(props: PropsWithChildren<AddInnerHooksProps<P, IP, RefValue>>, context?: any): ReactElement<any, any> | null;
   }
   export interface ComponentClass<P = {}, S = ComponentState> extends StaticLifecycle<P, S> {
-    new <IP = void, RefValue = any>(props: AddInnerHooksProps<P, IP, RefValue>, context?: any): Component<AddInnerHooksProps<P, IP, RefValue>, S>;
+    new <IP extends void | Partial<P> = void, RefValue = any>(props: AddInnerHooksProps<P, IP, RefValue>, context?: any): Component<AddInnerHooksProps<P, IP, RefValue>, S>;
   }
   export interface ExoticComponent<P = {}> {
     /**
      * **NOTE**: Exotic components are not callable.
      */
-    <IP = void, RefValue = any>(props: AddInnerHooksProps<P, IP, RefValue extends unknown ? any : RefValue>): (ReactElement | null);
+    <IP extends void | Partial<P> = void, RefValue = any>(props: AddInnerHooksProps<P, IP, RefValue extends unknown ? any : RefValue>): (ReactElement | null);
   }
 
 }
