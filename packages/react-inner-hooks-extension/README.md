@@ -409,7 +409,7 @@ But, you use carefully following link's article above, and I recommend you not t
 See example in App.tsx.
 
 ```shell
-npx yarn && npm link ./
+npx yarn
 cd ./examples && yarn dev
 ```
 
